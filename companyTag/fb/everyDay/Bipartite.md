@@ -1,4 +1,22 @@
 
+Iterate the nodes, if not visited then:
+
+DFS:
+  * color it
+  * see neighbors
+    * not color, then dfs color to opposite
+    * colored, check
+  
+
+BFS:
+  * color the start
+  * put start into q
+
+  * while not empty
+    * get cur
+    * see neighbors
+      * not, then...
+      * colored, then...
 
 
 
