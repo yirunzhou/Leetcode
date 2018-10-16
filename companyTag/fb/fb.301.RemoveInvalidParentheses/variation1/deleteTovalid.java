@@ -1,9 +1,15 @@
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.LinkedList;
 
 
-public class deleteTovalid{
+	
+
+public class DeleteTovalid{
 
 	public static String delete(String input){
 
@@ -59,6 +65,78 @@ public class deleteTovalid{
 		return result.toString();
 	}
 
+	public static String deleteInPlace(String input){
+
+		char[] c = input.toCharArray();
+
+		int lo = 0;
+		int hi = 0;
+		int counter = 0;
+
+		while(hi < c.length){
+
+			if(c[hi] == '('){
+				counter ++;
+
+				c[lo] = c[hi];
+
+				lo ++;
+				hi ++;
+			} else {
+
+				if(counter == 0){
+
+					hi ++;
+				} else {
+
+					counter --;
+					c[lo] = c[hi];
+					lo ++;
+					hi ++;
+				}
+			}
+		}
+
+		int end = lo;
+
+		lo = end-1;
+		hi = end-1;
+		counter = 0;
+
+		while(hi >= 0){
+
+			if(c[hi] == ')'){
+
+				counter ++;
+
+				c[lo] = c[hi];
+				lo --;
+				hi --;
+
+			} else {
+
+				if(counter == 0){
+					hi --;
+				} else {
+
+					counter --;
+					c[lo] = c[hi];
+					lo --;
+					hi --;
+				}
+			}
+		}
+
+		StringBuilder result = new StringBuilder();
+
+		for(int i = lo+1; i < end; i ++){
+			result.append(c[i]);
+		}
+
+		return result.toString();
+	}
+
+
 	public static void main(String[] args) {
 		
 		StringBuilder input = new StringBuilder();
@@ -75,9 +153,85 @@ public class deleteTovalid{
 
 		System.out.println(input);
 
-		String result = deleteTovalid.delete(input.toString());
+		DeleteTovalid test = new DeleteTovalid();
+
+		List<String> resultList = test.removeInvalidParentheses(input.toString());
+
+		String result = DeleteTovalid.deleteInPlace(input.toString());
 
 		System.out.println(result);
 
+		System.out.println(resultList);
+		System.out.println(resultList.contains(result));
+
+	}
+
+
+	public List<String> removeInvalidParentheses(String s) {
+
+		List<String> result = new ArrayList<>();
+
+		bfs(result, s);
+
+		return result;
+	}
+
+
+	private void bfs(List<String> result, String s){
+
+		Set<String> visited = new HashSet<>();
+		Queue<StringBuilder> queue = new LinkedList<>();
+
+		queue.offer(new StringBuilder(s));
+		visited.add(s);
+
+		while(!queue.isEmpty()){
+
+			int size = queue.size();
+			boolean found = false;
+
+			while(size-- > 0){
+				StringBuilder cur = queue.poll();
+
+				if(isValid(cur)){
+					found = true;
+					result.add(cur.toString());
+				}
+
+				for(int i = 0; i < cur.length(); i ++){
+
+					StringBuilder copy = new StringBuilder(cur);
+
+					copy.deleteCharAt(i);
+
+					if(visited.add(copy.toString())){
+						queue.offer(copy);
+					}
+				}
+			}
+
+			if(found){
+				break;
+			}
+		}
+	}
+	    
+
+
+	private boolean isValid(StringBuilder sb){
+		int counter = 0;
+
+		for(int i = 0; i < sb.length(); i ++){
+			if(sb.charAt(i) == '('){
+				counter ++;
+			} else if (sb.charAt(i) == ')'){
+				counter --;
+				if(counter < 0){
+					return false;
+				}
+			}
+		}
+
+		return counter == 0;
 	}
 }
