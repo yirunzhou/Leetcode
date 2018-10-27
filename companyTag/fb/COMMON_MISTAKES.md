@@ -15,3 +15,5 @@
 * 6. do not forget to update your counter !!
 
 * 7. pointer send into the function, be careful, it is pass by REFERENCE! thus = operator will not change the pointer's value in the original function
+
+* 8. pointer Name should be right
