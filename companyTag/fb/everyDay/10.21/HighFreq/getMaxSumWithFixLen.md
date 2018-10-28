@@ -1,14 +1,7 @@
 
 
-/**
-	
-	k = 2
 
-					i	j
-	0	1	2	3	4	5	
-
-*/
-
+```
 
 public Result getMaxSubarray(int[] nums, int start, int end, int k){
 
