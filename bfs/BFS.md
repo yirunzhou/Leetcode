@@ -2,6 +2,10 @@
 
 1. shortest path, do not forget to update the level variable, and to test is this level or level +1 to return
 
+original line
+original line2
+
+
 
 2. there are many ways to mark visited, change matrix
 	and be sure to use it to scan to decide whether to visit the neighbors
