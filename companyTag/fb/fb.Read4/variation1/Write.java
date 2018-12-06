@@ -51,6 +51,79 @@ write -> copy, move i
 	*/
 
 
+
+
+	public int read(char[] dest, int n){
+
+		int destCnt = 0;
+
+		while(destCnt < n && canReadCnt != 0){
+
+
+			int shouldCopy = Math.min(
+							Math.min(canReadCnt, n - destCnt), 
+							size - r);
+
+			// copy to dest
+			for(int i = 0; i < shouldCopy; i++){
+
+				dest[destCnt ++] = buffer[r ++];
+
+			}
+
+			
+
+			if(r == size){
+				r = 0;
+			}
+
+
+			canReadCnt -= shouldCopy;
+
+			canWrite += shouldCopy;
+
+		}
+
+		return destCnt;
+	}
+
+	// return the number of character we write into the queue
+	public int write(char[] input){
+
+		int count = 0;
+
+		int fileLen = input.length;
+
+		while(count < fileLen && canWrite != 0){
+
+
+			int shouldWrite = Math.min(fileLen - count, Math.min(size-w, canWrite));
+
+			for(int i = 0; i < shouldWrite; i ++){
+
+				buffer[w ++] = input[count ++];
+
+			}
+
+			if(w == size){
+				w = 0;
+			}
+
+			canRead += shouldWrite;
+			canWrite -= shouldWrite;
+		}
+
+		return count;
+
+	}
+
+
+
+
+
+
+
+
 	public int read(char[] destination, int n){
 
 		int count = 0;
@@ -59,6 +132,10 @@ write -> copy, move i
 
 			
 			int shouldCopy = 0;
+
+			/**
+				Bound by n - count, size - r, canRead
+			*/
 
 			shouldCopy = Math.min(size - r, n - count);
 
@@ -71,6 +148,8 @@ write -> copy, move i
 			if(r == size){
 				r = 0;
 			}
+
+			// Update after read
 
 			canReadCnt -= shouldCopy;
 			canWrite += shouldCopy;
@@ -94,6 +173,31 @@ write -> copy, move i
 	}
 
 
+	/**
+
+		0	1	2	3	4	5
+				w
+
+		y	z	c	d	e	x
+		
+				r
+
+		
+		canRead = 6
+
+		canWrite = 0
+
+		write (xyz) :
+
+			count = 1
+
+			shouldwrite = min (3-1, 6-0, 2) -> 2
+
+			copy(2)
+		
+			count = 3
+
+	*/
 
 
 

@@ -6,3 +6,7 @@ InterviewReview.md
 4/ analyse the complexity
 
 
+
+5/ validate the input
+
+6/ validate the input, mention recursion drawback, and how to optimize it

@@ -37,8 +37,6 @@ class Solution {
         boolean pFound = findPath(pPath, root, p);
         boolean qFound = findPath(qPath, root, q);
         
-        System.out.println(pPath);
-        System.out.println(qPath);
         
         
         if(!pFound || !qFound){

@@ -87,7 +87,7 @@ public int decodeWays(String s){
 
     dp[1] = s.charAt(0) == '*' ? 9 : 1;
 
-
+    
     for(int i = 2; i <= s.length(); i ++){
 
         char first = s.charAt(i-2);

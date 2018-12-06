@@ -7,10 +7,6 @@ encode decode nested string!!!
 
 leftmost
 
-比如一个数组[1,5,2,-2,3,4], k = 3 它让求两个interval的和的最大值，问题是，不是这两个interval分别长k，而是加起来为k……比如k=3就是分成（1，2）长度的interval（0，3这种不算）也就是说这道题答案是（5）+（3+4）= 12.  
-
-
-
 validate bst
 bst inorder iterator
 Symmetric Tree
@@ -18,12 +14,69 @@ Symmetric Tree
 257	tree path
 
 
-edit distance
-
 pizza
 
 
-friends of appropiate ages
-suggest friends
+
+211. Add and Search Word - Data structure design
+146. LRU Cache
+	
+Longest Increasing Subsequence
+
+random pop with o1
+	
+Design Tic-Tac-Toe
+
+
+Word Break
+
+N queen
+
+3Sum no sorting
+
+insert interval 
+
+
+
+String -> Interval
+
+reverse word in a sentence
+
+add string hex
+
+randomly return the. index of the max of array	
+
+min window. substring -> unique or. not
+
+
+
+
+class IntFileIterator {
+  boolean hasNext();
+  int next();
+}
+
+class FileCompare {
+  public boolean isDistanceZeroOrOne(IntFileIterator a, IntFileIterator b)；. from: 1point3acres 
+来源一亩.三分地论坛. 
+}
+// return if the distance between a and b is at most 1.
+// Distance: minimum number of modifications to make a=b. from: 1point3acres 
+// Modification:. 一亩-三分-地，独家发布
+//   1. change an int in a
+//   2. insert an int to a
+//   3. remove an int from a
+
+
+public boolean isDistanceZeroOrOne(IntFileIterator a, IntFileIterator b, int count){
+     if(!a.hasNext && !b.hasNext) return true;. 一亩-三分-地，独家发布
+     if(count > 1) return false;
+if(a == b) return isDistanceZeroOrOne(a.next, b.next, count);. 牛人云集,一亩三分地
+     return isDistanceZeroOrOne(a.next, b.next, count + 1) || isDistanceZeroOrOne(a, b.next, count + 1) || isDistanceZeroOrOne(a.next, b, count + 1)
+相当于两个指针一直移动， 都为空的时候为真，如果修改大于1位false
+}
+
+
+
 
 

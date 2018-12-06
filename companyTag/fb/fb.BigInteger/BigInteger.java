@@ -8,6 +8,129 @@ public class BigInteger{
 	public BigInteger(String val){
 		value = val;
 	}
+	/**
+
+	Case 1:
+	i
+		1	2	3	4
+
+	-		1	9	7
+					
+		1	0	3	7
+		
+
+
+		0
+
+		-> reverse -> 0	 3	3	7 -> 3	3 7	 -> negtive or positive? insert "-"
+
+		return
+		
+
+					
+	diff = carry + n1 - n2
+
+	if diff < 0
+		carry = -1
+
+		diff += 10
+
+	move to next position
+
+	Case 2:
+
+			8	9	7
+
+	-	1	2	3	4
+
+	-> compare which has larger abs using some other helper function
+
+
+
+	*/
+	/**
+		1. both negative -> add positive -> add "-"
+
+		2. one of them is negative -> compare to determin the sign (other function)
+
+		-> substract larger one with smaller one
+
+	*/
+
+	// num2 is negative and it has smaller absolute value
+
+		/**
+			
+
+		*/
+	public String addWithNeg(String num2){
+
+		String num1 = this.value;
+
+		int i = num1.length()-1;
+
+		int j = num2.length()-1;
+
+		int carry = 0;
+
+		StringBuilder result = new StringBuilder();
+
+		// j == 0 is the negative sign
+		while(i >= 0 || j >= 1){
+
+			int n1 = i >= 0? (num1.charAt(i) - '0') : 0;
+
+			int n2 = j >= 1? (num2.charAt(j) - '0') : 0;
+
+			int sum = carry + n1 - n2;
+
+			if(sum < 0){
+
+				carry = -1;
+				sum += 10;
+
+			} else{
+
+				carry = 0;
+
+			}
+
+
+			result.append(sum);
+
+			i --;
+			j --;
+
+		}
+
+		// trailing 0
+		while(result.length() > 0 && result.charAt(result.length()-1) == '0'){
+			result.deleteCharAt(result.length()-1);
+		}
+
+		result.reverse();
+
+		if(result.length() == 0){
+			return "0";
+		}
+
+		return result.toString();
+
+	}
+
+
+	public String addWithFraction(String frac1){
+
+		
+
+	}
+
+
+
+
+
+
+
 
 
 	public String multiply(String num2){
@@ -107,9 +230,11 @@ public class BigInteger{
 
 	public static void main(String[] args) {
 		
-		BigInteger bi = new BigInteger(args[1]);
+		BigInteger bi = new BigInteger(args[0]);
 
-		System.out.println(Long.valueOf(bi.add(args[0])) == Long.valueOf(args[1]) + Long.valueOf(args[0]));
+		System.out.println(Long.parseLong(bi.addWithNeg(args[1])));
+
+		System.out.println(Long.parseLong(args[0]) + Long.parseLong(args[1]));
 
 
 	}

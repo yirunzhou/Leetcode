@@ -11,7 +11,6 @@
 
 public class VectorProduct{
 
-
 	public static int product(int[][] A, int[][] B){
 
 		int i = 0;
@@ -60,8 +59,6 @@ public class VectorProduct{
 
 
 	public static int productBS(int[][] A, int[][] B){
-
-		
 
 		int result = 0;
 
