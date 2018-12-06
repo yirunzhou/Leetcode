@@ -2,8 +2,7 @@
 
 1. shortest path, do not forget to update the level variable, and to test is this level or level +1 to return
 
-new editline1
-new editline2
+origin2 change
 
 
 2. there are many ways to mark visited, change matrix
